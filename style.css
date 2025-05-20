@@ -1,0 +1,690 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@300;400;600;700&display=swap');
+
+/* --- VARIÁVEIS GLOBAIS --- */
+:root {
+    --primary-color: #00A9FF; /* Azul elétrico vibrante */
+    --secondary-color: #007FFF; /* Um azul um pouco mais escuro para variações */
+    --accent-color: #FFD700; /* Dourado/Amarelo para destaque sutil se necessário */
+
+    --dark-bg: #121212; /* Fundo escuro principal */
+    --medium-dark-bg: #1E1E1E; /* Fundo para cards e seções secundárias */
+    --light-bg: #f4f4f4; /* Fundo claro para contraste (se usar seções claras) */
+
+    --text-light: #E0E0E0; /* Texto principal em fundos escuros */
+    --text-medium: #A0A0A0; /* Texto secundário, placeholders */
+    --text-dark: #333333; /* Texto em fundos claros */
+
+    --font-primary: 'Syne', sans-serif;
+    --font-secondary: 'Syne', sans-serif;
+
+    --border-radius: 8px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --transition-speed: 0.3s ease;
+    --animation-speed: 0.8s;
+}
+
+/* --- RESET BÁSICO & ESTILOS GLOBAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base para REM */
+}
+
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.7;
+    overflow-x: hidden; /* Evita scroll horizontal em animações */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: #fff; /* Cores dos títulos para tema escuro */
+}
+
+h1 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+h2 { font-size: 2.2rem; margin-bottom: 2rem; text-align: center; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-medium);
+}
+section p {
+    color: var(--text-light); /* Texto mais claro dentro de seções */
+}
+
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.section-title {
+    padding-bottom: 10px;
+    position: relative;
+    margin-bottom: 3rem;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* --- BOTÕES --- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 169, 255, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--medium-dark-bg);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-medium);
+}
+.btn-outline:hover {
+    background-color: var(--text-light);
+    color: var(--dark-bg);
+    border-color: var(--text-light);
+    transform: translateY(-3px);
+}
+
+
+/* --- HEADER --- */
+.main-header {
+    background-color: rgba(18, 18, 18, 0.8); /* Fundo com transparência */
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 45px; /* Ajuste conforme seu logo */
+}
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: 0.5rem;
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav li {
+    margin-left: 1.8rem;
+}
+
+.main-nav a {
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed);
+}
+.main-nav a:hover::after,
+.main-nav a.active::after { /* Adicionar classe 'active' com JS para a página atual */
+    width: 100%;
+}
+
+.nav-cta {
+    background-color: var(--primary-color);
+    color: #fff !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+.nav-cta:hover {
+    background-color: var(--secondary-color);
+}
+.nav-cta::after { display: none !important; } /* Remove underline do CTA */
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    /* background: linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.9)), url('assets/hero-background.jpg') no-repeat center center/cover; */
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #2a2a3a 100%); /* Gradiente sutil */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 0 60px; /* Espaço para header fixo */
+    position: relative;
+    overflow: hidden;
+}
+/* Efeito de partículas (opcional, requer JS ou mais CSS)
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(0, 169, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+    animation: particleMove 20s linear infinite;
+}
+@keyframes particleMove {
+    from { background-position: 0 0; }
+    to { background-position: -200px -200px; }
+} */
+
+.hero-slogan {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-welcome {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--text-medium);
+}
+.hero-welcome strong {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.hero-buttons .btn {
+    margin: 0.5rem;
+}
+
+/* --- ABOUT SECTION (QUEM SOMOS) --- */
+.about-section {
+    padding: 80px 0;
+    background-color: var(--medium-dark-bg);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    text-align: center;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-light);
+}
+
+.mission-vision-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.mvv-item {
+    background-color: var(--dark-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.mvv-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 169, 255, 0.1);
+}
+.mvv-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-mvv {
+    margin-right: 0.75rem;
+    font-size: 1.4rem;
+}
+.mvv-item p {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+}
+
+/* --- SERVICES SECTION --- */
+.services-section {
+    padding: 80px 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas em linha */
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--medium-dark-bg);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-left-color var(--transition-speed);
+    border-left: 4px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-left-color: var(--primary-color);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.service-card ul li {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 20px;
+}
+.service-card ul li::before {
+    content: "\f00c"; /* Font Awesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 0.8rem;
+}
+
+/* --- PORTFOLIO SECTION --- */
+.portfolio-section {
+    padding: 80px 0;
+    background-color: var(--medium-dark-bg);
+    text-align: center;
+}
+.portfolio-placeholder {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- CONTACT SECTION --- */
+.contact-section {
+    padding: 80px 0;
+}
+.contact-content {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    justify-content: center; /* Centraliza os itens quando quebram */
+}
+.contact-form-container {
+    flex: 2;
+    min-width: 300px;
+    max-width: 600px; /* Limita a largura do formulário */
+}
+.contact-info {
+    flex: 1;
+    min-width: 280px;
+    background-color: var(--medium-dark-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    align-self: flex-start; /* Alinha no topo */
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-medium);
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333; /* Borda sutil */
+    border-radius: var(--border-radius);
+    background-color: var(--medium-dark-bg);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 169, 255, 0.3);
+}
+.contact-form textarea {
+    resize: vertical;
+}
+.btn-submit { width: 100%; }
+
+.contact-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+}
+.contact-info p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    width: 20px; /* Alinhamento */
+}
+.contact-info a {
+    color: var(--text-light);
+}
+.contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.contact-cta {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+}
+.contact-cta h4 {
+    color: var(--text-light);
+}
+.contact-cta p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--medium-dark-bg);
+    color: var(--text-medium);
+    padding-top: 4rem;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding-bottom: 3rem;
+    align-items: flex-start;
+}
+.footer-logo-area .footer-logo {
+    height: 50px;
+    margin-bottom: 1rem;
+}
+.footer-logo-area p {
+    font-size: 0.9rem;
+}
+.footer-links h4, .footer-social h4 {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.footer-links ul li {
+    margin-bottom: 0.7rem;
+}
+.footer-links a {
+    color: var(--text-medium);
+}
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+.footer-social a {
+    color: var(--text-medium);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    display: inline-block;
+    transition: transform var(--transition-speed), color var(--transition-speed);
+}
+.footer-social a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+}
+
+/* --- SCROLL ANIMATIONS --- */
+.animate-on-scroll {
+    opacity: 0;
+    /* Adicione uma transição para a opacidade e a transformação */
+    transition: opacity var(--animation-speed) cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform var(--animation-speed) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Direções das animações */
+.fade-in-up { transform: translateY(30px); }
+.fade-in-down { transform: translateY(-30px); }
+.fade-in-left { transform: translateX(-30px); }
+.fade-in-right { transform: translateX(30px); }
+.fade-in { opacity: 0; } /* Para elementos que só precisam de fade */
+
+
+/* Estado final da animação - quando visível */
+.is-visible {
+    opacity: 1;
+    transform: translate(0, 0); /* Volta para a posição original */
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 992px) { /* Ponto de quebra para tablets e telas menores */
+    h1 { font-size: 2.5rem; }
+    .hero-slogan { font-size: 3rem; }
+    h2 { font-size: 2rem; }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+    }
+
+    .contact-content {
+        flex-direction: column;
+        align-items: center; /* Centraliza o formulário e info */
+    }
+    .contact-form-container, .contact-info {
+        width: 100%;
+        max-width: 600px; /* Mantém largura máxima */
+    }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .hero-slogan { font-size: 2.5rem; }
+    .hero-welcome { font-size: 1rem; }
+
+    .main-nav {
+        display: none; /* Esconder nav para mobile, precisa de JS para toggle */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Abaixo do header */
+        left: 0;
+        width: 100%;
+        background-color: var(--dark-bg); /* Mesmo fundo que o header */
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    .main-nav.active { /* Classe adicionada por JS */
+        display: flex;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    .main-nav li {
+        margin: 0.8rem 0;
+        text-align: center;
+    }
+    .main-nav a {
+        padding: 0.8rem 1rem;
+        display: block;
+        width: 100%;
+    }
+    .nav-cta {
+        margin-top: 1rem;
+        display: inline-block; /* Para centralizar se necessário */
+    }
+    .mobile-nav-toggle {
+        display: block;
+    }
+    .main-header .container {
+        padding: 0 20px; /* Ajuste de padding para o container do header */
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-buttons .btn {
+        width: 80%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .mission-vision-values {
+        grid-template-columns: 1fr; /* Uma coluna no mobile */
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* 1 coluna em celulares */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-logo-area, .footer-links, .footer-social {
+        margin-bottom: 2rem;
+    }
+    .footer-logo-area .footer-logo { margin: 0 auto 1rem; }
+    .footer-social a { margin: 0 0.5rem; }
+
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    .hero-slogan { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    .btn { padding: 10px 20px; font-size: 0.9rem; }
+}
